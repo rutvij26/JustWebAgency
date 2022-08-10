@@ -35,18 +35,16 @@ def MergedTuple(grouped):
             )
 
 
-tupled_list = sorted(
-    [x for x in gen_tuple(ls)], 
-    key= lambda x: x[0]
-    )
+
+tupled_list = sorted(list(map(list, gen_tuple(ls))), key= lambda x: x[0])
 
 grouped = [ {key: list((float(rating), name) for star, rating, name in value)} 
            for key, value in itertools.groupby(tupled_list, lambda x: x[0]) ]
 
 
         
-final_list = sorted([v for v in MergedTuple(grouped)], key= lambda x: x[2])
-null_s=""
+final_list = sorted(list(map(list, MergedTuple(grouped))), key= lambda x: x[2])
+
 for i in final_list:
     star, rating, movies = i
 
